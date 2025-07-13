@@ -1,0 +1,18 @@
+{% extends "base1.html" %}
+
+{% block title %}
+home-page
+{% endblock  %}
+
+
+{% block content %}
+ home 
+
+ {% if data %}
+   {% for i in data %}
+        {{i}}
+   {% endfor %}
+ {%else%}
+   <h1> data empty </h1>
+ {%endif%}  
+{% endblock  %}
