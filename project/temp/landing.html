@@ -1,17 +1,28 @@
+
 {% extends "base1.html" %}
 {% load static%}
 
- {% block title %}
- Landing_Page
- {% endblock %}
+{% block title %}
+Landing_Page
+{% endblock %}
 
 {% block css  %}
 <link rel ="stylesheet" href="{% static 'css/first.css'%}"
 {% endblock  %}
- 
- {% block content %}
+
+{% block content %}
+
+<form action="{% url 'landingpage' %}" method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+     {{fm}}
+    <button type="submit"> register</button>
+
+ </form>    
+
  landing 
  <h1 class="hello">hello</h1>
  <img src="{% static 'image/dog.webp'%}">
+
+ <img src="https://res.cloudinary.com/dzrrxi89x/image/upload/v1754298993/samples/dessert-on-a-plate.jpg" alt="" height="400px">
  <video src="{% static 'video/hh.mp4'%}" controls autoplay  height="200px"> </video>
  {% endblock  %}
