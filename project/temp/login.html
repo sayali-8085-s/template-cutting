@@ -6,5 +6,10 @@ login
 
 
 {% block content %}
- login page
+ <form action="{% url 'login' %}" method="post" enctype="multipart/form-data" novalidate>
+     {% csrf_token %}
+     {{fm}}
+    <button type="submit"> login</button>
+
+ </form>    
 {% endblock  %}

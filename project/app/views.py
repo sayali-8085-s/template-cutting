@@ -35,3 +35,20 @@ def landingpage(req):
             fm = studentform()
     fm = studentform()
     return render(req,'landing.html',{'fm':fm})
+
+
+def login(req):
+    if req.method=='POST':
+        form =loginform(req.POST,req.FILES)
+        
+
+        
+        if form. is_valid():
+             n=form.cleaned_data['name']
+             e=form.cleaned_data.get('email')
+             i=form.cleaned_data.get('image')
+             r= form.cleaned_data['resume']
+            form.save()
+           
+    fm = loginform()
+    return render(req,'login.html',{'fm':fm})
