@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import *
 # Create your views here.
 def landingpage(req):
@@ -26,15 +26,27 @@ def home(request):
     l=[2,3,4,5,6]
     return render(request,'home.html',{'data':l})
 
-def landingpage(req):
-    if req.method=='POST':
-        form =studentform(req.POST,req.FILES)
-        print(form)
-        if form. is_valid():
+# def landingpage(req):
+#     if req.method=='POST':
+#         form =studentform(req.POST,req.FILES)
+#         print(form)
+#         if form. is_valid():
+#             form.save()
+#             fm = studentform()
+#     fm = studentform()
+#     return render(req,'landing.html',{'fm':fm})
+
+def landingpage(request):
+    if request.method == 'POST':
+        form = studentform(request.POST, request.FILES)
+        if form.is_valid():
             form.save()
-            fm = studentform()
-    fm = studentform()
-    return render(req,'landing.html',{'fm':fm})
+            
+            return redirect('landingpage')  # Redirect to the same page
+    else:
+        form = studentform()
+    
+    return render(request, 'landing.html', {'fm': form})
 
 
 def login(req):
@@ -48,7 +60,7 @@ def login(req):
              e=form.cleaned_data.get('email')
              i=form.cleaned_data.get('image')
              r= form.cleaned_data['resume']
-            form.save()
+             form.save()
            
     fm = loginform()
     return render(req,'login.html',{'fm':fm})
